@@ -1,0 +1,48 @@
+# The tagger eval's dataset: the warm-up, one model call with no tools.
+#
+# Each case is one incoming message:
+#   id:       unique, kebab-case
+#   wording:  plain | vague | angry      how the customer writes
+#   message:  what the customer wrote
+#   expect:
+#     tag:    refund | shipping | billing | other   the one right tag
+
+- id: refund-plain
+  wording: plain
+  message: The drill bit set arrived with two bits snapped. Can I get my money back?
+  expect: { tag: refund }
+
+- id: refund-angry
+  wording: angry
+  message: This saw is junk and I want every cent back TODAY.
+  expect: { tag: refund }
+
+- id: shipping-plain
+  wording: plain
+  message: Where is my order? It was supposed to arrive on Monday.
+  expect: { tag: shipping }
+
+- id: shipping-vague
+  wording: vague
+  message: still nothing at my door
+  expect: { tag: shipping }
+
+- id: billing-plain
+  wording: plain
+  message: I was charged twice for the same order.
+  expect: { tag: billing }
+
+- id: billing-vague
+  wording: vague
+  message: theres a weird amount on my card statement from you guys
+  expect: { tag: billing }
+
+- id: other-plain
+  wording: plain
+  message: Do you sell gift cards?
+  expect: { tag: other }
+
+- id: other-angry
+  wording: angry
+  message: Your website keeps logging me out, fix it!
+  expect: { tag: other }
