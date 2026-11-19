@@ -26,7 +26,7 @@ module Evals
       def summary = "tagging · #{@model} · right #{rate(@answers)}"
 
       def markdown
-        ["# tagging · #{@model} · #{@samples} samples · #{@at.strftime('%Y-%m-%dT%H%M')}", '',
+        ["# tagging · #{@model} · #{@samples} #{@samples == 1 ? 'sample' : 'samples'} · #{@at.strftime('%Y-%m-%dT%H%M')}", '',
          "**Right:** #{rate(@answers)} · **Errored:** #{@answers.count(&:error)}", '',
          breakdown('tag') { _1.kase.tag }, '', breakdown('wording') { _1.kase.wording }, '',
          *not_always_right].join("\n")

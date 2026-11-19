@@ -53,7 +53,7 @@ module Evals
       private
 
       def heading
-        ["# support · #{@model} · #{@samples} samples · #{@at.strftime('%Y-%m-%dT%H%M')}", '']
+        ["# support · #{@model} · #{@samples} #{@samples == 1 ? 'sample' : 'samples'} · #{@at.strftime('%Y-%m-%dT%H%M')}", '']
       end
 
       def rates

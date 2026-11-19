@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'pathname'
 require 'rspec/core/rake_task'
 require_relative 'lib/acme'
 
@@ -33,7 +34,7 @@ def run_eval(suite)
   options = eval_options(suite::Case.all)
   answers = suite::Run.new(**options.slice(:model, :samples, :threads)).call(options[:cases])
   report = suite::Report.new(answers, **options.slice(:model, :samples))
-  puts "#{report.summary} · #{report.write}"
+  puts "#{report.summary} · #{Pathname(report.write).relative_path_from(Acme::ROOT)}"
 end
 
 namespace :evals do
